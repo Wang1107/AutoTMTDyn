@@ -21,7 +21,8 @@ rjtip(:,:,end) = rjtipF( vars , z(end,:) ) ; % last point correctin!!!
 rjtip = double ( rjtip );
 
 % Windows set:
-figure ; clf
+% figure ; clf 
+h = subplot(4,5,[4,5,9,10,14,15,19,20]) ;
 
 window_xmin = min ( min ( rjtip(:,4,:) ) );
 window_xmax = max ( max ( rjtip(:,4,:) ) );

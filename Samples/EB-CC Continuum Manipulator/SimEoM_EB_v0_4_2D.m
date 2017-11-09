@@ -22,18 +22,19 @@ function dz = EOM ( t , z , par )
 if mod( t , 1 ) < 1e-6 ; t % report every second
 end
 
+% lambdal = 1 ;
+lambdal = z(1) / par.l_b ;
+
 % pressure parameters
-d_p = par.d_p ; a_p = par.a_p ;
+d_p = par.d_p / sqrt( lambdal ) ; a_p = par.a_p ;
 
 p_i = [ par.p_rho( floor( t * 1/par.stepT + 1 ) , 1 ) ...
     par.p_rho( floor( t * 1/par.stepT + 1 ) , 2 ) ...
     par.p_rho( floor( t * 1/par.stepT + 1 ) , 3 ) ] - [ 1 1 1 ] * 1e5 ;
 
 psi = par.phi_b + atan2( ( sqrt( 3 ) * ( p_i(2) + p_i(3) - 2 * p_i(1) ) ) , ( 3 * ( p_i(2) - p_i(3) ) ) ) - pi / 2 ;
-fj = [ ( p_i(1) + p_i(2) + p_i(3) )*a_p ; ...
-    -( p_i(1) * cos( - psi ) + p_i(2) * cos( 2 * pi / 3 - psi ) + p_i(3) * cos( - 2 * pi / 3 - psi ) )*a_p*d_p/2 ];
-lambdal = 1 ;
-lambdal = z(1) / par.l_b ;
+fj = [ ( p_i(1) + p_i(2) + p_i(3) )*a_p ;
+    -( p_i(1) * cos( - psi ) + p_i(2) * cos( 2 * pi / 3 - psi ) + p_i(3) * cos( - 2 * pi / 3 - psi ) )*a_p*d_p/2 ] ;
 
 fex = [ 0 0 0 ] ;
 
@@ -87,6 +88,6 @@ for i = 0 : 1/n : 1
     
 end
 
-TMTc = TMTc / n ; Tdc = Tdc/ n ;
+TMTc = TMTc * intlim / n ; Tdc = Tdc * intlim / n ;
 
 
