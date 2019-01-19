@@ -1,1 +1,2 @@
-AutoTMTDyn - Software package in matlab language, for automatic derivation of dynamic eom and nonlinear controller design in vector formalism for general type rigid and continuum body series and parallel mechanisms with constraint.
+AutoTMTDyn is a matlab based package, for automatic derivation of TMT Equation of Motion (EOM) for rigid body dynamic systems, and nonlinear controller design.
+
